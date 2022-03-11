@@ -5,6 +5,7 @@ import { setMode } from '../actions/types';
 
 function Banner() {
   const { mode } = useSelector((state) => state.interface);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   function changeMode() {
@@ -19,7 +20,10 @@ function Banner() {
 
       <div style={{ display: 'flex' }}>
         <div style={styles.menuItem}>
-          👱‍♂️ <Link to="/profile">John Doe</Link>
+          👱‍♂️{' '}
+          <Link to="/profile">
+            {user.firstname} {user.lastname}
+          </Link>
         </div>
         <div style={styles.menuItem}>
           🛒{' '}

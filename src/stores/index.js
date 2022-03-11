@@ -1,10 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 
 import interfaceReducer from '../reducers/interface';
+import userReducer from '../reducers/user';
 
 const rootReducer = combineReducers({
   interface: interfaceReducer,
-  // user: userReducer,
+  user: userReducer,
   // basket : basketReducer
 });
 
