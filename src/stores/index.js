@@ -2,11 +2,12 @@ import { combineReducers, createStore } from 'redux';
 
 import interfaceReducer from '../reducers/interface';
 import userReducer from '../reducers/user';
+import basketReducer from '../reducers/basket';
 
 const rootReducer = combineReducers({
   interface: interfaceReducer,
   user: userReducer,
-  // basket : basketReducer
+  basket: basketReducer,
 });
 
 const store = createStore(

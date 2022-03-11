@@ -1,27 +1,32 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product';
-import { useProducts } from '../services/Products';
+import { clearBasket, removeItem } from '../actions/types';
 
 function Basket() {
-  const products = useProducts();
   const user = useSelector((state) => state.user);
+  const basket = useSelector((state) => state.basket);
 
-  const onlyFourProducts = products?.slice(-4);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <h2>Hi {user.firstname}!</h2>
-      <h3>There are 4 items in your basket</h3>
-      <button>Clear basket</button>
+      <h3>There are {basket.length} items in your basket</h3>
+      <button onClick={() => dispatch(clearBasket())}>Clear basket</button>
       <hr />
 
       <div className="basket-container">
-        {onlyFourProducts &&
-          onlyFourProducts.map((product) => (
-            <Product key={product.id} product={product}>
+        {basket.length > 0 &&
+          basket.map(({ id, item, quantity }) => (
+            <Product key={id} product={item}>
               <div>
-                <button type="submit">Remove</button>
+                <p>
+                  <strong>Quantity : {quantity}</strong>
+                </p>
+                <button type="button" onClick={() => dispatch(removeItem(id))}>
+                  Remove
+                </button>
               </div>
             </Product>
           ))}

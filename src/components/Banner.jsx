@@ -6,6 +6,8 @@ import { setMode } from '../actions/types';
 function Banner() {
   const { mode } = useSelector((state) => state.interface);
   const user = useSelector((state) => state.user);
+  const basket = useSelector((state) => state.basket);
+
   const dispatch = useDispatch();
 
   function changeMode() {
@@ -28,7 +30,7 @@ function Banner() {
         <div style={styles.menuItem}>
           🛒{' '}
           <Link to="/basket">
-            <strong>4</strong> items
+            <strong>{basket.length}</strong> items
           </Link>
         </div>
         <div style={styles.menuItem}>
